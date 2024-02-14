@@ -25,3 +25,7 @@
 	path = lib/lvgl
 	url = https://github.com/qmk/lvgl.git
 	branch = release/v8.2
+[submodule "keyboards/cherry"]
+	path = keyboards/cherry
+	url = https://github.com/as32/devCherryKb.git
+	branch = as32_sn32_develop
