@@ -21,13 +21,13 @@ def status():
     status is None when the submodule doesn't exist, False when it's out of date, and True when it's current
     """
     submodules = {}
-    gitmodule_config = cli.run(['git', 'config', '-f', '.gitmodules', '-l'], timeout=30)
+    gitmodule_config = cli.run(['git', 'config', '-f', '.gitmodules', '-l'], timeout=120)
     for line in gitmodule_config.stdout.splitlines():
         key, value = line.split('=', maxsplit=2)
         if key.endswith('.path'):
             submodules[value] = {'name': value, 'status': None}
 
-    git_cmd = cli.run(['git', 'submodule', 'status'], timeout=30)
+    git_cmd = cli.run(['git', 'submodule', 'status'], timeout=120)
     for line in git_cmd.stdout.splitlines():
         status = line[0]
         githash, submodule = line[1:].split()[:2]
