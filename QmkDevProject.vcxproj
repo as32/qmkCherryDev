@@ -18,6 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="keyboards\cherry\g80_3000n_tkl_rgb\backlight.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -120,8 +123,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SN32_HAS_SPI=1;HAL_USE_SPI=1;SN32_SPI_USE_SPI0=TRUE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>platforms;lib/chibios-contrib/os/hal/ports/SN32/SN32F240B;platforms/chibios;lib/chibios/os/common/ext/ARM/CMSIS/Core/Include;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/WDT;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/SPI;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/USB;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/GPIO;lib/chibios/os/hal/include;lib/chibios/os/common/ports/ARMCMx;lib/chibios/os/rt/include;lib/chibios-contrib/os/common/ext/SONiX/SN32F2xx;lib/chibios-contrib/os/common/startup/ARMCMx/devices/SN32F24xB;platforms/chibios/boards/common/configs;platforms/chibios/boards/SN_SN32F240B/configs;quantum/sequencer;quantum/process_keycode;quantum/keymap_extras;quantum;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,8 +138,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SN32_HAS_SPI=1;HAL_USE_SPI=1;SN32_SPI_USE_SPI0=TRUE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>platforms;lib/chibios-contrib/os/hal/ports/SN32/SN32F240B;platforms/chibios;lib/chibios/os/common/ext/ARM/CMSIS/Core/Include;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/WDT;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/SPI;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/USB;lib/chibios-contrib/os/hal/ports/SN32/LLD/SN32F2xx/GPIO;lib/chibios/os/hal/include;lib/chibios/os/common/ports/ARMCMx;lib/chibios/os/rt/include;lib/chibios-contrib/os/common/ext/SONiX/SN32F2xx;lib/chibios-contrib/os/common/startup/ARMCMx/devices/SN32F24xB;platforms/chibios/boards/common/configs;platforms/chibios/boards/SN_SN32F240B/configs;quantum/sequencer;quantum/process_keycode;quantum/keymap_extras;quantum;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
