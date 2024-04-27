@@ -18,7 +18,7 @@ void set_color(int index, uint8_t r, uint8_t g, uint8_t b) {
     if (index >= 0 && index < DRIVER_LED_TOTAL)
     {
         _set_color(index, r, g, b);
-    }   
+    }
 }
 
 static void set_color_all(uint8_t r, uint8_t g, uint8_t b) {

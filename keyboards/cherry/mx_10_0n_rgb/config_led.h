@@ -1,5 +1,5 @@
 /*
-Copyright 2023 as32 (https://github.com/as32)
+Copyright 2024 as32 (https://github.com/as32)
 based on Copyright 2020 Adam Honse <calcprogrammer1@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
@@ -31,4 +31,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DRIVER_LED_TOTAL (89)
 #define RGB_MATRIX_LED_COUNT (89)
-

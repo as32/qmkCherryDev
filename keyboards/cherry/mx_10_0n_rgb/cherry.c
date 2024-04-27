@@ -1,13 +1,6 @@
 #include "quantum.h"
 #include "rgb_matrix.h"
 
-extern void transferRgbColorsToSpi(void);
-
-void housekeeping_task_kb(void) {
-    transferRgbColorsToSpi();
-}
-
-
 /*
  * must override sleep functions without idle thread
  */
@@ -36,11 +29,3 @@ msg_t chThdSuspendTimeoutS(thread_reference_t *trp, sysinterval_t timeout) {
 }
 
 #endif /* CH_CFG_NO_IDLE_THREAD */
-
-//int rand(void) {
-//    static uint32_t seed = 134775813U;
-//    seed                 = seed * 1664525U + 1013904223U;
-//    return seed;
-//}
-
-

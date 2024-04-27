@@ -15,6 +15,7 @@
 #ifdef USE_FRAMEBUFFER
 static uint8_t g_fb[2][144];
 #endif
+
 static uint8_t g_spi_buf[256];
 static uint8_t g_led_vaf[36] = {[0 ... 35] = 0x55};
 
@@ -142,22 +143,6 @@ static uint8_t g_col_index[89][4] = {
 };
 
 
-
-// void SPI0_Read3(unsigned char b1, unsigned char b2, unsigned char *b3)
-//{
-//    /* write first 2 bytes: header and address */
-//    while (!SN_SPI0->STAT_b.TX_EMPTY);
-//    SN_SPI0->DATA_b.Data = b1;
-//    SN_SPI0->DATA_b.Data = b2;
-//
-//    /* read 1 byte data */
-//    while (SN_SPI0->STAT_b.BUSY);
-//    while (SN_SPI0->STAT_b.RX_EMPTY);
-//    *b3 = SN_SPI0->DATA_b.Data;
-//
-//    while (SN_SPI0->STAT_b.BUSY);
-//}
-SPIConfig spicfg;
 /*****************************************************************************
  * Function		: SPI0_Init40B
  * Description	: Initialization of SPI0 init
@@ -258,13 +243,6 @@ void spi_cs_off(void) {
     writePinHigh(A6);
 }
 
-// void spi_read3(unsigned char b1, unsigned char b2, unsigned char *b3)
-//{
-//    writePinLow(g_cs_pin);
-//    SPI0_Read3(b1, b2, b3);
-//    writePinHigh(g_cs_pin);
-//}
-
 static uint8_t dummyData;
 
 void __SpiSend(uint8_t *p, int len)
@@ -309,24 +287,14 @@ void spi_w3(uint8_t page, uint8_t addr, uint8_t data) {
     spi_write_raw_arr(g_spi_buf, 3);
 }
 
-// void spi_r3(uint8_t page, uint8_t addr, uint8_t *data)
-//{
-//    uint8_t c[4];
-//    c[0] = page | 0x20;
-//    c[1] = addr;
-//    spi_read3(c[0], c[1], data);
-//}
 
 #ifdef USE_FRAMEBUFFER
-
 static void flush_led_fb(int32_t pin)
 {
     spi_set_cspin(pin);
     spi_write_addr_arr(0, 36, g_fb[g_cs_pin-1], 144);
 }
-
 #else
-
 static void _set_color_direct(int index, uint8_t r, uint8_t g, uint8_t b) {
     if (index<0 || index >= DRIVER_LED_TOTAL) return;
     if ((index == 50 && g_indicateCapsLock) || (index==14 && g_indicateScrollLock)) {
@@ -340,14 +308,6 @@ static void _set_color_direct(int index, uint8_t r, uint8_t g, uint8_t b) {
     spi_w3(0, 36 + g_col_index[index][3], b);
 }
 #endif // USE_FRAMEBUFFER
-
-
-void transferRgbColorsToSpi(void) {
-#ifdef USE_FRAMEBUFFER
-    //flush_led_fb(1);
-    //flush_led_fb(2);
-#endif
-}
 
 
 void _set_color(int index, uint8_t r, uint8_t g, uint8_t b) {
@@ -367,26 +327,6 @@ void _set_color(int index, uint8_t r, uint8_t g, uint8_t b) {
         _set_color_direct(index, r, g, b);
 #endif
 }
-
-// void _read_color(int index, uint8_t *r, uint8_t *g, uint8_t *b)
-//{
-//    int l = g_led_pos[index];
-//
-//    if (l >= 100)
-//    {
-//        l -= 100;
-//        spi_set_cspin(1);
-//    }
-//    else
-//        spi_set_cspin(2);
-//
-//    int y = l / 16;
-//    int a = l % 16;
-//
-//    spi_r3(1, y * 48 + a, r); // r
-//    spi_r3(1, y * 48 + a + 2 * 8, b); // b
-//    spi_r3(1, y * 48 + a + 4 * 8, g); // g
-//}
 
 void reset_rgb(int byteCountToSend) {
 #ifdef USE_FRAMEBUFFER

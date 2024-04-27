@@ -73,7 +73,7 @@
             "solid_multisplash": true
         },
         "driver": "custom",
-	"sleep": true
+        "sleep": true
     },
     "diode_direction": "ROW2COL",
     "layouts": {
@@ -171,4 +171,3 @@
         }
     }
 }
-

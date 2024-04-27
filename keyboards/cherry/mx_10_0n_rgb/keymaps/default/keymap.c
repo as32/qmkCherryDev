@@ -58,4 +58,3 @@ bool rgb_matrix_indicators_user(void) {
     g_indicateScrollLock = host_keyboard_led_state().scroll_lock;
     return false;
 }
-//rgb_matrix_indicators_advanced_user
