@@ -25,9 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LED_MATRIX_ROW_CHANNELS 3
 #define LED_MATRIX_ROWS_HW (LED_MATRIX_ROWS * LED_MATRIX_ROW_CHANNELS)
 #define LED_MATRIX_ROW_PINS MATRIX_ROW_PINS
-#define LED_MATRIX_COLS 17
+#define LED_MATRIX_COLS 21
 
 #define LED_MATRIX_COL_PINS MATRIX_COL_PINS
 
-#define DRIVER_LED_TOTAL (89)
-#define RGB_MATRIX_LED_COUNT (89)
+#define DRIVER_LED_TOTAL (110)
+#define RGB_MATRIX_LED_COUNT (110)
