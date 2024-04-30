@@ -19,7 +19,7 @@ static uint8_t g_fb[3][144];
 static uint8_t g_spi_buf[256];
 static uint8_t g_led_vaf[36] = {[0 ... 35] = 0x55};
 
-static int g_cs_pin = 1; // 1 for A5; 2 for A6
+static int g_cs_pin = 1; // 1 for A5; 2 for A6; 3 for A7
 
 bool g_indicateCapsLock = false;
 bool g_indicateScrollLock = false;
@@ -32,10 +32,10 @@ static bool g_spi_ready = false;
 /*
  * LED index to RGB address
  */
-static uint8_t g_col_index[110][4] = {
+static uint8_t g_col_index[109][4] = {
     /* row 1 */
     { 0x1, 0x00, 0x0C, 0x18 },
-    //{ 0x3, 0x04, 0x10, 0x1C }, // cherry
+    //{ 0x3, 0x04, 0x10, 0x1C }, // cherry key
     //{ 0x1, 0x01, 0x0D, 0x19 },
     { 0x1, 0x02, 0x0E, 0x1A },
     { 0x1, 0x03, 0x0F, 0x1B },
@@ -51,7 +51,7 @@ static uint8_t g_col_index[110][4] = {
     { 0x3, 0x01, 0x0D, 0x19 },
     { 0x3, 0x02, 0x0E, 0x1A },
     { 0x3, 0x03, 0x0F, 0x1B },
-    { 0x3, 0x04, 0x10, 0x1C }, // cherry
+    { 0x3, 0x04, 0x10, 0x1C }, // cherry key address used for PAUSE key
     { 0x3, 0x05, 0x11, 0x1D },
     { 0x3, 0x06, 0x12, 0x1E },
     { 0x3, 0x07, 0x13, 0x1F },
@@ -94,7 +94,7 @@ static uint8_t g_col_index[110][4] = {
     { 0x1, 0x52, 0x5E, 0x6A },
     { 0x1, 0x53, 0x5F, 0x6B },
     { 0x3, 0x48, 0x54, 0x60 },
-    { 0x3, 0x49, 0x55, 0x61 },
+    //{ 0x3, 0x49, 0x55, 0x61 }, // ISO enter key
     { 0x3, 0x4A, 0x56, 0x62 },
     { 0x3, 0x4B, 0x57, 0x63 },
     { 0x3, 0x4C, 0x58, 0x64 },
@@ -139,7 +139,7 @@ static uint8_t g_col_index[110][4] = {
     { 0x2, 0x09, 0x15, 0x21 },
     { 0x2, 0x0A, 0x16, 0x22 },
     { 0x2, 0x0B, 0x17, 0x23 },
-    //{ 0x2, 0x48, 0x54, 0x60 }, // unused due to right shift
+    //{ 0x2, 0x48, 0x54, 0x60 }, // right shift
     { 0x2, 0x49, 0x55, 0x61 },
     //{ 0x0, 0x00, 0x00, 0x00 },
     { 0x2, 0x4A, 0x56, 0x62 },
@@ -177,7 +177,7 @@ static uint8_t g_col_index[110][4] = {
 /*****************************************************************************
  * Function		: SPI0_Init40B
  * Description	: Initialization of SPI0 init
- * Input			: None
+ * Input		: None
  * Output		: None
  * Return		: None
  * Note			: None
@@ -218,7 +218,7 @@ void SPI0_Init40B(void) {
 /*****************************************************************************
  * Function		: SPI0_Enable40B
  * Description	: SPI0 enable setting
- * Input			: None
+ * Input		: None
  * Output		: None
  * Return		: None
  * Note			: None
@@ -233,7 +233,7 @@ void SPI0_Enable40B(void) {
 /*****************************************************************************
  * Function		: SPI0_Disable40B
  * Description	: SPI0 disable setting
- * Input			: None
+ * Input		: None
  * Output		: None
  * Return		: None
  * Note			: None
@@ -335,7 +335,7 @@ static void flush_led_fb(int32_t pin)
 #else
 static void _set_color_direct(int index, uint8_t r, uint8_t g, uint8_t b) {
     if (index<0 || index >= DRIVER_LED_TOTAL) return;
-    if ((index == 62 && g_indicateCapsLock) || (index==14 && g_indicateScrollLock) || (index==37 && g_indicateNumLock)) {
+    if ((index == 61 && g_indicateCapsLock) || (index==14 && g_indicateScrollLock) || (index==37 && g_indicateNumLock)) {
         r = 255, g = 0, b = 0;
     }
     uint8_t idx = g_col_index[index][0];

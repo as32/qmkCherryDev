@@ -29,5 +29,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define LED_MATRIX_COL_PINS MATRIX_COL_PINS
 
-#define DRIVER_LED_TOTAL (110)
-#define RGB_MATRIX_LED_COUNT (110)
+#define DRIVER_LED_TOTAL (109)
+#define RGB_MATRIX_LED_COUNT (109)
