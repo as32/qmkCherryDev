@@ -3,6 +3,7 @@
     "keyboard_name": "MX 10.0N RGB",
     "url": "https://www.cherryamericas.com/mx-10-0n-rgb",
     "maintainer": "as32",
+    "processor": "SN32F248BF",
     "bootloader": "sn32-dfu",
     "debounce": 5,
     "usb": {

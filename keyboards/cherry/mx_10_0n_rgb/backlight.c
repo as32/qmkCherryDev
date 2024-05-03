@@ -351,7 +351,7 @@ static void _set_color_direct(int index, uint8_t r, uint8_t g, uint8_t b) {
 void _set_color(int index, uint8_t r, uint8_t g, uint8_t b) {
 #ifdef USE_FRAMEBUFFER
     if (index<0 || index >= DRIVER_LED_TOTAL) return;
-    if ((index == 62 && g_indicateCapsLock) || (index==14 && g_indicateScrollLock) || (index==37 && g_indicateNumLock)) {
+    if ((index == 61 && g_indicateCapsLock) || (index==14 && g_indicateScrollLock) || (index==37 && g_indicateNumLock)) {
         r = 255, g = 0, b = 0;
     }
     uint8_t indx = g_col_index[index][0];
