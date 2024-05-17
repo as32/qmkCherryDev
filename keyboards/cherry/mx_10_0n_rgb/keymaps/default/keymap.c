@@ -20,6 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define RGB_MFWD RGB_MODE_FORWARD
 
+enum custom_keycodes {
+    CM_WLGT = SAFE_RANGE // WinLK (Windows Logout equivalent to Win+L)
+};
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -39,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         { KC_LCTL, KC_LGUI,  KC_LALT, KC_NO, KC_NO, KC_NO, KC_SPC,KC_NO, KC_NO, KC_NO,   KC_RALT, MO(_FN), KC_APP,  KC_RCTL,     KC_LEFT, KC_DOWN, KC_RIGHT,     KC_NO,   KC_P0,   KC_PDOT, KC_NO   }
     },
     [_FN]   {
-        { _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,  RGB_MFWD, RGB_TOG, RGB_VAD, RGB_VAI, RGB_SPD, RGB_SPI,   KC_NO, KC_MPRV, KC_MPLY,  KC_MNXT, _______, _______,  _______, _______, _______, _______ },
+        { _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,  RGB_MFWD, RGB_TOG, RGB_VAD, RGB_VAI, RGB_SPD, RGB_SPI, CM_WLGT, KC_MPRV, KC_MPLY,  KC_MNXT, _______, _______,  _______, _______, _______, _______ },
         { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,  _______, _______, _______, _______ },
         { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,  _______, _______, _______, _______ },
         { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,  _______, _______, _______, _______ },
@@ -59,3 +63,18 @@ bool rgb_matrix_indicators_user(void) {
     g_indicateNumLock = host_keyboard_led_state().num_lock;
     return false;
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CM_WLGT:
+            if (record->event.pressed) {
+                // when keycode is pressed
+                SEND_STRING(SS_LGUI("l"));
+            } else {
+                // when keycode is released
+            }
+            return true;
+        default:
+            return true;
+    }
+};
