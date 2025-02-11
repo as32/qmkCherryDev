@@ -1,0 +1,11 @@
+VIA_ENABLE = yes
+
+EEPROM_DRIVER = wear_leveling
+WEAR_LEVELING_DRIVER = embedded_flash
+#LTO_ENABLE = yes
+#ENCODER_MAP_ENABLE = yes
+#QMK_SETTINGS = no
+
+#EEPROM_DRIVER = transient
+#TRANSIENT_EEPROM_SIZE = 256
+
