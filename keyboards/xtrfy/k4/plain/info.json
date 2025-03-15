@@ -2,7 +2,7 @@
     "keyboard_name": "Xtrfy K4",
     "manufacturer": "Xtrfy",
     "url": "https://cherryxtrfy.com/keyboards/k4/",
-    "processor": "SN32F248BF",
+    "processor": "SN32F268F",
     "maintainer": "humanplayer2",
     "bootloader": "sn32-dfu",
     "debounce": 1,
