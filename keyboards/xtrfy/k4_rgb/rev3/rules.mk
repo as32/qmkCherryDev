@@ -1,5 +1,7 @@
 MCU_LDSCRIPT = SN32F260
 
+SRC += custom_drivers/no_idle_thread.c
+
 ####LDFLAGS += --specs=nano.specs
 ## USE_LINK_GC = yes
 
