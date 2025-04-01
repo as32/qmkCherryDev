@@ -1,4 +1,8 @@
-MCU_LDSCRIPT = SN32F260
+##MCU_LDSCRIPT = SN32F260
+
+TOP_SYMBOLS = 20
+
+
 
 SRC += custom_drivers/no_idle_thread.c
 
