@@ -7,7 +7,7 @@
     "bootloader": "sn32-dfu",
     "diode_direction": "ROW2COL",
     "features": {
-        "rgb_matrix": false,
+        "rgb_matrix": true,
         "bootmagic": false,
         "command": false,
         "console": false,
@@ -23,7 +23,7 @@
         "wear_leveling": {
             "backing_size": 64,
             "logical_size": 32
-	}
+        }
     },
     "matrix_pins": {
         "cols": ["A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12", "A13", "A14", "A15", "D0", "D1", "D2", "D3", "D4", "D5", "D8"],
