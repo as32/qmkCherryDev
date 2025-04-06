@@ -16,6 +16,7 @@
 
 #pragma once
 
+#define HAL_USE_PAL 1
 #define HAL_USE_PWM TRUE
 
 #include_next <halconf.h>
