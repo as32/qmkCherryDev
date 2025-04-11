@@ -1,5 +1,7 @@
 ##MCU_LDSCRIPT = SN32F260
 
+### SRC += rgb_matrix.c  
+
 TOP_SYMBOLS = 20
 
 
